@@ -1,0 +1,90 @@
+/* Container Styles */
+.container {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin-top: 100px;
+    padding: 20px;
+    text-align: center;
+}
+
+.list-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles */
+.add-button,
+.button,
+.action-button {
+    padding: 10px 15px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.add-button {
+    background-color: #2a9d8f;
+    margin-bottom: 10px;
+}
+
+.button {
+    background-color: #457b9d;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* List and List Item Styles */
+.list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.action-button {
+    padding: 5px 10px;
+    background-color: #457b9d;
+    margin: 0 5px;
+    font-size: 14px;
+}
+
+    .action-button.delete {
+        background-color: #e63946;
+    }
+
+/* Editor Styles */
+.editor-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
