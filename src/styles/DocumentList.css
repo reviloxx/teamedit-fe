@@ -67,9 +67,9 @@
     font-size: 14px;
 }
 
-    .action-button.delete {
-        background-color: #e63946;
-    }
+.action-button.delete {
+    background-color: #e63946;
+}
 
 /* Editor Styles */
 .editor-container {
@@ -78,7 +78,7 @@
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left;
+    text-align: left;    
 }
 
 .textarea {

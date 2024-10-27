@@ -1,4 +1,5 @@
 #root {
   height: 100vh;
-  background-image: url('src/public/black_wood.jpg');    
+  background-image: url('src/public/black_wood.jpg');   
+  overflow: auto; 
 }

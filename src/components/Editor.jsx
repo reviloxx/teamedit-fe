@@ -10,7 +10,7 @@ import { HocuspocusProvider, TiptapCollabProvider } from '@hocuspocus/provider'
 
 const doc = new Y.Doc() // Initialize Y.Doc for shared editing
 
-function Editor({ item }) {
+function Editor({ document }) {
     const editor = useEditor({
         extensions: [
             Document,
@@ -27,7 +27,7 @@ function Editor({ item }) {
         },
         onUpdate({ editor }) {
             if (editor.state.doc.textContent != "")
-                item.content = editor.state.doc.textContent
+                document.content = editor.state.doc.textContent
         }        
     })
 
@@ -35,14 +35,14 @@ function Editor({ item }) {
     useEffect(() => {
         editor.commands.setContent("")
         new TiptapCollabProvider({
-            name: item.id, // Unique document identifier for syncing. This is your document name.
+            name: document.id, // Unique document identifier for syncing. This is your document name.
             appId: '7j9y6m10', // Your Cloud Dashboard AppID or `baseURL` for on-premises
             token: 'notoken', // Your JWT token
             document: doc,
             
             onSynced() {
                 if (editor.state.doc.textContent == "")
-                    editor.commands.setContent(item.content)
+                    editor.commands.setContent(document.content)
             }            
         })
     }, [])
