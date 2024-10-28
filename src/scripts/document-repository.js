@@ -2,7 +2,19 @@ const baseUrl = "/api/documents/"
 
 class DocumentRepositoy {   
 
-    static async getDocumentsFromDb() {
+    static async getDocument(id) {
+        try {
+            let response = await fetch(baseUrl + 'byId?' + new URLSearchParams({
+                id: id
+            }).toString())
+
+            return await response.json(); 
+        } catch (error) {
+            console.error("Error fetching documents:", error);
+        }                          
+    };
+
+    static async getAllDocuments() {
         try {
             let response = await fetch(baseUrl);
             return await response.json(); 
@@ -11,7 +23,7 @@ class DocumentRepositoy {
         }                          
     };
 
-    static async storeDocumentToDb(document) {
+    static async storeDocument(document) {
         try {
             await fetch(baseUrl, {
                 mode: 'cors',
@@ -25,7 +37,7 @@ class DocumentRepositoy {
             console.error("Error storing document:", error);
         }
     }
-    static async deleteDocumentFromDb(document) {
+    static async deleteDocument(document) {
         try {
             await fetch(baseUrl, {
                 mode: 'cors',

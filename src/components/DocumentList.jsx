@@ -14,7 +14,7 @@ const DocumentList = () => {
     useEffect(() => { fetchData(); }, []);
 
     const fetchData = async () => {
-        const data = await DocumentRepositoy.getDocumentsFromDb();
+        const data = await DocumentRepositoy.getAllDocuments();
 
         if (data != undefined)
             setDocuments(data);
@@ -31,24 +31,31 @@ const DocumentList = () => {
 
     const handleAddDocument = async () => {
         let newDocument = { id: crypto.randomUUID(), title: newDocumentName, lastModifiedUtc: new Date().toISOString() };
-        await DocumentRepositoy.storeDocumentToDb(newDocument);
+        await DocumentRepositoy.storeDocument(newDocument);
         setDocuments([...documents, newDocument]);
         setNewDocumentName('');
         setIsAdding(false);
     };    
 
-    const handleOpenDocument = async (documentId) => {
+    const handleOpenDocument = async (id) => {
+        let document = await DocumentRepositoy.getDocument(id);
+
+        if (document == undefined) {
+            setDocuments(documents.filter(x => x.id !== id));
+            return;
+        }            
+
         setCurrentDocument(document);
         setIsEditing(true);
     };
     
     const handleDeleteDocument = async (document) => {
-        await DocumentRepositoy.deleteDocumentFromDb(document);
+        await DocumentRepositoy.deleteDocument(document);
         setDocuments(documents.filter(x => x.id !== document.id));
     };       
     
     const handleBackToList = async () => {
-        await DocumentRepositoy.storeDocumentToDb(currentDocument);
+        await DocumentRepositoy.storeDocument(currentDocument);
         setIsEditing(false);
     };
 
