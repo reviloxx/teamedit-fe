@@ -3,21 +3,19 @@ import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
 import { EditorContent, useEditor } from '@tiptap/react'
 import { Collaboration } from '@tiptap/extension-collaboration'
-import * as Y from 'yjs'
 // Importing the provider and useEffect
 import { useEffect } from 'react'
 import { HocuspocusProvider, TiptapCollabProvider } from '@hocuspocus/provider'
 
-const doc = new Y.Doc() // Initialize Y.Doc for shared editing
 
-function Editor({ document }) {
+function Editor({ document, yDoc }) {
     const editor = useEditor({
         extensions: [
             Document,
             Paragraph,
             Text,
             Collaboration.configure({
-                document: doc, // Configure Y.Doc for collaboration
+                document: yDoc, // Configure Y.Doc for collaboration
             }),
         ],
         editorProps: {
@@ -37,7 +35,7 @@ function Editor({ document }) {
             name: document.id, // Unique document identifier for syncing. This is your document name.
             appId: '7j9y6m10', // Your Cloud Dashboard AppID or `baseURL` for on-premises
             token: 'notoken', // Your JWT token
-            document: doc,
+            document: yDoc,
             
             onSynced() {
                 if (editor.state.doc.textContent === "")

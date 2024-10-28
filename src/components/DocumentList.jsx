@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import Editor from './Editor';
 import '../styles/DocumentList.css';
 import DocumentRepositoy from '../scripts/document-repository';
+import * as Y from 'yjs'
 
 const DocumentList = () => {
     const [documents, setDocuments] = useState([]);
@@ -20,7 +21,8 @@ const DocumentList = () => {
             setDocuments(data);
     }        
 
-    const handleShowAddDocument = () => {
+    const handleShowAddDocument = async () => {
+        await fetchData();
         setIsAdding(true);
     };
 
@@ -56,6 +58,7 @@ const DocumentList = () => {
     
     const handleBackToList = async () => {
         await DocumentRepositoy.storeDocument(currentDocument);
+        await fetchData();
         setIsEditing(false);
     };
 
@@ -64,7 +67,7 @@ const DocumentList = () => {
             {isEditing ? (
                 <div className="editor-container">
                     <h5>{currentDocument.title}</h5>
-                    <Editor document={currentDocument}></Editor>
+                    <Editor document={currentDocument} yDoc={new Y.Doc()}></Editor>
                     <div className="button-container">
                         <button onClick={handleBackToList} className="button" style={{ backgroundColor: '#f0a500' }}>
                             Close
