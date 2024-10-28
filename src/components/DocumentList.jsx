@@ -38,6 +38,7 @@ const DocumentList = () => {
     };    
 
     const handleOpenDocument = async (documentId) => {
+        await fetchData();
         let document = documents.find(x => x.id == documentId)
 
         if (document == null)
