@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:5251/api/documents/"
+const baseUrl = "/api/documents/"
 
 class DocumentRepositoy {   
 
