@@ -50,12 +50,12 @@ class DocumentManager extends Component {
 
     handleOpenDocument = async (id) => {
         const document = await DocumentApiService.getDocument(id);
-        if (!document) {
-            this.setState(prevState => ({
-                documents: prevState.documents.filter(doc => doc.id !== id)
-            }));
+
+        if (await this.documentWasDeleted(id)) {
+            this.removeDocumentFromList(id);
             return;
         }
+
         this.setState({ currentDocument: document, isEditing: true });
     };
 
@@ -66,12 +66,27 @@ class DocumentManager extends Component {
         }));
     };
 
-    handleCloseEditor = async () => {
+    handleCloseEditor = async () => {        
         const { currentDocument } = this.state;
-        await DocumentApiService.storeDocument(currentDocument);
+
+        if (!await this.documentWasDeleted(currentDocument.id)) {
+            await DocumentApiService.storeDocument(currentDocument);
+        }
+        
         await this.fetchData();
         this.setState({ isEditing: false });
     };
+
+    async documentWasDeleted(id) {
+        const document = await DocumentApiService.getDocument(id);
+        return document === null;
+    }
+
+    removeDocumentFromList(id) {
+        this.setState(prevState => ({
+            documents: prevState.documents.filter(doc => doc.id !== id)
+        }));
+    }
 
     render() {
         const { documents, currentDocument, isEditing, isAdding } = this.state;
