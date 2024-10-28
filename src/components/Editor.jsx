@@ -26,14 +26,13 @@ function Editor({ document }) {
             }
         },
         onUpdate({ editor }) {
-            if (editor.state.doc.textContent != "")
+            if (editor.state.doc.textContent !== "")
                 document.content = editor.state.doc.textContent
         }        
     })
 
     // Connect to your Collaboration server
     useEffect(() => {
-        editor.commands.setContent("")
         new TiptapCollabProvider({
             name: document.id, // Unique document identifier for syncing. This is your document name.
             appId: '7j9y6m10', // Your Cloud Dashboard AppID or `baseURL` for on-premises
@@ -41,7 +40,7 @@ function Editor({ document }) {
             document: doc,
             
             onSynced() {
-                if (editor.state.doc.textContent == "")
+                if (editor.state.doc.textContent === "")
                     editor.commands.setContent(document.content)
             }            
         })
