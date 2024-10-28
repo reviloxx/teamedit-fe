@@ -1,4 +1,4 @@
-class DocumentRepositoy {
+class DocumentRepository {
     static documents = [];
 
     static getDocuments() {
@@ -21,4 +21,4 @@ class DocumentRepositoy {
     }
 }
 
-module.exports = DocumentRepositoy;
+module.exports = DocumentRepository;

@@ -1,4 +1,4 @@
-import DocumentList from './components/DocumentList.jsx'
+import DocumentManager from './components/DocumentManager.jsx'
 import { AppBar, Toolbar, Typography } from '@mui/material';
 
 function App() {   
@@ -11,7 +11,7 @@ function App() {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <DocumentList/>     
+            <DocumentManager/>     
         </div>
     );
 }

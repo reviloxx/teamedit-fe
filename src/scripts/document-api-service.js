@@ -1,6 +1,6 @@
 const baseUrl = "/api/documents/"
 
-class DocumentRepositoy {   
+class DocumentApiService {   
 
     static async getDocument(id) {
         try {
@@ -51,17 +51,6 @@ class DocumentRepositoy {
             console.error("Error deleting document:", error);
         }
     }
-
-    /* static async deleteDocumentFromDb(documentId) {
-        try {
-            await fetch(baseUrl + "?" + new URLSearchParams({ id: documentId }).toString(), {
-                mode: 'cors',
-                method: "DELETE"
-            });
-        } catch (error) {
-            console.error("Error storing document:", error);
-        }
-    } */
 }
 
-export default DocumentRepositoy;
+export default DocumentApiService;
