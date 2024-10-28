@@ -11,7 +11,7 @@ const DocumentList = () => {
     const [isAdding, setIsAdding] = useState(false);
     const [newDocumentName, setNewDocumentName] = useState('');
 
-    useEffect(() => { fetchData(); });
+    useEffect(() => { fetchData(); }, []);
 
     const fetchData = async () => {
         const data = await DocumentRepositoy.getDocumentsFromDb();
