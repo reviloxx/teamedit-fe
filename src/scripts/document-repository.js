@@ -13,7 +13,7 @@ class DocumentRepositoy {
 
     static async storeDocumentToDb(document) {
         try {
-            await fetch(baseUrl + 'addOrUpdate', {
+            await fetch(baseUrl, {
                 mode: 'cors',
                 method: "POST",
                 body: JSON.stringify(document),
@@ -25,8 +25,22 @@ class DocumentRepositoy {
             console.error("Error storing document:", error);
         }
     }
+    static async deleteDocumentFromDb(document) {
+        try {
+            await fetch(baseUrl, {
+                mode: 'cors',
+                method: "DELETE",
+                body: JSON.stringify(document),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            });
+        } catch (error) {
+            console.error("Error deleting document:", error);
+        }
+    }
 
-    static async deleteDocumentFromDb(documentId) {
+    /* static async deleteDocumentFromDb(documentId) {
         try {
             await fetch(baseUrl + "?" + new URLSearchParams({ id: documentId }).toString(), {
                 mode: 'cors',
@@ -35,7 +49,7 @@ class DocumentRepositoy {
         } catch (error) {
             console.error("Error storing document:", error);
         }
-    }
+    } */
 }
 
 export default DocumentRepositoy;

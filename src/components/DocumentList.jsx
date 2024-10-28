@@ -47,9 +47,9 @@ const DocumentList = () => {
         setIsEditing(true);
     };
     
-    const handleDeleteDocument = async (documentId) => {
-        await DocumentRepositoy.deleteDocumentFromDb(documentId);
-        setDocuments(documents.filter(document => document.id !== documentId));
+    const handleDeleteDocument = async (document) => {
+        await DocumentRepositoy.deleteDocumentFromDb(document);
+        setDocuments(documents.filter(x => x.id !== document.id));
     };       
     
     const handleBackToList = async () => {
@@ -93,7 +93,7 @@ const DocumentList = () => {
                                     <span>{document.title}</span>                                    
                                 <div>
                                     <button onClick={() => handleOpenDocument(document.id)} className="action-button">Open</button>
-                                    <button onClick={() => handleDeleteDocument(document.id)} className="action-button delete">Delete</button>
+                                    <button onClick={() => handleDeleteDocument(document)} className="action-button delete">Delete</button>
                                 </div>
                             </li>
                         ))}
