@@ -19,24 +19,27 @@ class DocumentListHeader extends Component {
     };
 
     render() {
-        const { isAdding, onCancelAddDocument, onShowAddDocument } = this.props;
+        const { isAdding, onCancelAddDocument, onShowAddDocument, onRefresh } = this.props;
 
         return (
-            <div>
+            <div className='list-header-container'>
                 {isAdding ? (
                     <div>
                         <input
                             type="text"
                             value={this.state.documentName}
                             onChange={this.handleInputChange}
-                            placeholder="Enter document name"
+                            placeholder="Document name"
                             className="input"
                         />
                         <button onClick={this.handleAddDocument} className="action-button">Confirm</button>
                         <button onClick={onCancelAddDocument} className="action-button delete">Cancel</button>
                     </div>
                 ) : (
-                    <button onClick={onShowAddDocument} className="action-button">Add Document</button>
+                    <div>
+                        <button onClick={onShowAddDocument} className="add-button">New</button>
+                        <button onClick={onRefresh} className="action-button">Reload</button>
+                    </div>
                 )}
             </div>
         );

@@ -10,7 +10,6 @@
 
 .list-container {
     background-color: #f9f9f9;
-    border: 1px solid #ccc;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -20,7 +19,7 @@
 .add-button,
 .button,
 .action-button {
-    padding: 10px 15px;
+    padding: 5px 10px;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -30,16 +29,25 @@
 
 .add-button {
     background-color: #2a9d8f;
-    margin-bottom: 10px;
+    margin: 5px;
 }
 
 .button {
     background-color: #457b9d;
 }
 
+.action-button {
+    background-color: #457b9d;
+    margin: 5px;
+}
+
+.action-button.delete {
+    background-color: #e63946;
+}
+
 .button-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     margin-top: 10px;
 }
 
@@ -61,15 +69,9 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.action-button {
-    padding: 5px 10px;
-    background-color: #457b9d;
-    margin: 0 5px;
-    font-size: 14px;
-}
-
-.action-button.delete {
-    background-color: #e63946;
+.list-header-container {
+   text-align: right; 
+   padding-right: 11px;
 }
 
 /* Editor Styles */
@@ -88,4 +90,10 @@
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 16px;
+}
+
+.input {
+    font-size: 16px;
+    padding: 5px 10px;
+    border: #457b9d;
 }

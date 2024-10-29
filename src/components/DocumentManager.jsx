@@ -30,7 +30,6 @@ class DocumentManager extends Component {
     };
 
     handleShowAddDocument = async () => {
-        await this.fetchData();
         this.setState({ isAdding: true });
     };
 
@@ -42,6 +41,7 @@ class DocumentManager extends Component {
         const { documents } = this.state;
         const newDocument = { id: crypto.randomUUID(), title: newDocumentName, lastModifiedUtc: new Date().toISOString() };
         await DocumentApiService.storeDocument(newDocument);
+        
         this.setState({
             documents: [...documents, newDocument],
             isAdding: false
@@ -49,13 +49,15 @@ class DocumentManager extends Component {
     };
 
     handleOpenDocument = async (id) => {
-        const document = await DocumentApiService.getDocument(id);
+        if (!await DocumentApiService.documentExists(id)) {
+            this.setState(prevState => ({
+                documents: prevState.documents.filter(doc => doc.id !== id)
+            }));
 
-        if (await this.documentWasDeleted(id)) {
-            this.removeDocumentFromList(id);
             return;
         }
 
+        const document = await DocumentApiService.getDocument(id);
         this.setState({ currentDocument: document, isEditing: true });
     };
 
@@ -69,24 +71,13 @@ class DocumentManager extends Component {
     handleCloseEditor = async () => {        
         const { currentDocument } = this.state;
 
-        if (!await this.documentWasDeleted(currentDocument.id)) {
+        if (await DocumentApiService.documentExists(currentDocument.id)) {
             await DocumentApiService.storeDocument(currentDocument);
         }
         
         await this.fetchData();
         this.setState({ isEditing: false });
     };
-
-    async documentWasDeleted(id) {
-        const document = await DocumentApiService.getDocument(id);
-        return document === null;
-    }
-
-    removeDocumentFromList(id) {
-        this.setState(prevState => ({
-            documents: prevState.documents.filter(doc => doc.id !== id)
-        }));
-    }
 
     render() {
         const { documents, currentDocument, isEditing, isAdding } = this.state;
@@ -106,6 +97,7 @@ class DocumentManager extends Component {
                             onAddDocument={this.handleAddDocument}
                             onCancelAddDocument={this.handleCancelAddDocument}
                             onShowAddDocument={this.handleShowAddDocument}
+                            onRefresh={this.fetchData}
                         />
                         <DocumentList 
                             documents={documents} 

@@ -28,7 +28,7 @@ class DocumentEditor extends Component {
             ],
             editorProps: {
                 attributes: {
-                    class: 'focus:outline-none'
+                    class: 'input'
                 }
             },
             onUpdate: ({ editor }) => {
@@ -69,7 +69,7 @@ class DocumentEditor extends Component {
 
         return (
             <div className="editor-container">
-                <h5>{document.title}</h5>
+                <h2>{document.title}</h2>
                 {editor && (
                     <EditorContent
                         style={{ margin: 0, justifyContent: 'top-left', alignItems: 'top-left' }}
