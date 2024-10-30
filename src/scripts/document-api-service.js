@@ -1,3 +1,6 @@
+import * as Y from 'yjs';
+import * as base64 from "byte-base64";
+
 const baseUrl = "/api/documents/"
 
 class DocumentApiService {   
@@ -12,6 +15,11 @@ class DocumentApiService {
             }
     
             let data = await response.json().catch(() => null);
+
+            const loadedYDoc = new Y.Doc()
+            Y.applyUpdate(loadedYDoc, base64.base64ToBytes(data.ydoc))
+
+            data.ydoc = loadedYDoc;
     
             return data && Object.keys(data).length ? data : null;
         } catch (error) {
@@ -36,6 +44,8 @@ class DocumentApiService {
 
     static async storeDocument(document) {
         try {
+            document.ydoc = base64.bytesToBase64(Y.encodeStateAsUpdate(document.ydoc));
+
             await fetch(baseUrl, {
                 mode: 'cors',
                 method: "POST",

@@ -16,7 +16,7 @@ class DocumentManager extends Component {
             isEditing: false,
             isAdding: false
         };
-    }
+    }    
 
     componentDidMount() {
         this.fetchData();
@@ -39,7 +39,7 @@ class DocumentManager extends Component {
 
     handleAddDocument = async (newDocumentName) => {
         const { documents } = this.state;
-        const newDocument = { id: crypto.randomUUID(), title: newDocumentName, lastModifiedUtc: new Date().toISOString() };
+        const newDocument = { id: crypto.randomUUID(), title: newDocumentName, lastModifiedUtc: new Date().toISOString(), ydoc: new Y.Doc() };
         await DocumentApiService.storeDocument(newDocument);
         
         this.setState({
@@ -86,8 +86,7 @@ class DocumentManager extends Component {
             <div className="container">
                 {isEditing ? (
                     <DocumentEditor 
-                        document={currentDocument}                         
-                        yDoc={new Y.Doc()} 
+                        document={currentDocument}
                         onClose={this.handleCloseEditor} 
                     />
                 ) : (

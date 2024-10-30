@@ -15,7 +15,7 @@ class DocumentEditor extends Component {
     }
 
     componentDidMount() {
-        const { document, yDoc } = this.props;
+        const { document } = this.props;
 
         const editor = new Editor({
             extensions: [
@@ -23,34 +23,23 @@ class DocumentEditor extends Component {
                 Paragraph,
                 Text,
                 Collaboration.configure({
-                    document: yDoc, // Configure Y.Doc for collaboration
-                }),
+                    document: document.ydoc
+                })
             ],
             editorProps: {
                 attributes: {
                     class: 'input'
                 }
-            },
-            onUpdate: ({ editor }) => {
-                if (editor.state.doc.textContent !== "") {
-                    document.content = editor.state.doc.textContent;
-                }
             }
         });
 
         this.setState({ editor });
-
-        // Connect to your Collaboration server
-        this.provider = new TiptapCollabProvider({
-            name: document.id, // Unique document identifier for syncing
-            appId: '7j9y6m10', // Your Cloud Dashboard AppID or `baseURL` for on-premises
-            token: 'notoken', // Your JWT token
-            document: yDoc,
-            onSynced: () => {
-                if (editor.state.doc.textContent === "") {
-                    editor.commands.setContent(document.content);
-                }
-            }
+       
+        this.provider = new TiptapCollabProvider({            
+            name: document.id,
+            appId: '7j9y6m10',
+            token: 'notoken',
+            document: document.ydoc
         });
     }
 
