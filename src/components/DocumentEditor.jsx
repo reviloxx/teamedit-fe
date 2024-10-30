@@ -5,6 +5,7 @@ import Text from '@tiptap/extension-text';
 import { EditorContent, Editor } from '@tiptap/react';
 import { Collaboration } from '@tiptap/extension-collaboration';
 import { TiptapCollabProvider } from '@hocuspocus/provider';
+import { format } from 'date-fns';
 
 class DocumentEditor extends Component {
     constructor(props) {
@@ -59,6 +60,7 @@ class DocumentEditor extends Component {
         return (
             <div className="editor-container">
                 <h2>{document.title}</h2>
+                <h5>Created on {format(new Date(document.createdUtc), 'd.MM.yyyy, H:mm:ss')}</h5>
                 {editor && (
                     <EditorContent
                         style={{ margin: 0, justifyContent: 'top-left', alignItems: 'top-left' }}

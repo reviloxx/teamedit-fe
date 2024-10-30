@@ -6,7 +6,7 @@ const DocumentList = ({ documents, onOpenDocument, onDeleteDocument }) => {
         <ul className="list">
             {documents.sort((a, b) => a.title.localeCompare(b.title)).map(document => (
                 <li key={document.id} className="list-item" onClick={() => onOpenDocument(document.id)}>
-                    <span>{format(new Date(document.lastModifiedUtc), 'd.MM.yyyy, H:mm:ss')}</span>
+                    <span>{format(new Date(document.createdUtc), 'd.MM.yyyy, H:mm:ss')}</span>
                     <span>{document.title}</span>
                     <div>
                         <button onClick={() => onDeleteDocument(document)} className="action-button delete">Delete</button>

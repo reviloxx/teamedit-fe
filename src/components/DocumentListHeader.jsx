@@ -4,19 +4,19 @@ class DocumentListHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            documentName: '',
-        };
+            documentName: ''
+        }
     }
 
     handleInputChange = (event) => {
         const value = event.target.value;
         this.setState({ documentName: value });
-    };
+    }
 
     handleAddDocument = () => {
         this.props.onAddDocument(this.state.documentName);
         this.setState({ documentName: '' });
-    };
+    }
 
     render() {
         const { isAdding, onCancelAddDocument, onShowAddDocument, onRefresh } = this.props;

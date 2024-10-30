@@ -4,8 +4,6 @@ import DocumentApiService from '../scripts/document-api-service';
 import DocumentEditor from './DocumentEditor';
 import DocumentList from './DocumentList';
 import DocumentListHeader from './DocumentListHeader';
-import '../styles/DocumentManager.css';
-
 
 class DocumentManager extends Component {
     constructor(props) {
@@ -35,7 +33,7 @@ class DocumentManager extends Component {
 
     handleAddDocument = async (newDocumentName) => {
         const { documents } = this.state;
-        const newDocument = { id: crypto.randomUUID(), title: newDocumentName, lastModifiedUtc: new Date().toISOString(), ydoc: new Y.Doc() };
+        const newDocument = { id: crypto.randomUUID(), title: newDocumentName, createdUtc: new Date().toISOString(), ydoc: new Y.Doc() };
         await DocumentApiService.storeDocument(newDocument);
         
         this.setState({
