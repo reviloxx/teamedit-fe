@@ -29,13 +29,9 @@ class DocumentManager extends Component {
         }
     };
 
-    handleShowAddDocument = async () => {
-        this.setState({ isAdding: true });
-    };
-
-    handleCancelAddDocument = () => {
-        this.setState({ isAdding: false });
-    };
+    handleShowAddDocument = () => { this.setState({ isAdding: true }); };
+    
+    handleCancelAddDocument = () => { this.setState({ isAdding: false }); };
 
     handleAddDocument = async (newDocumentName) => {
         const { documents } = this.state;
@@ -49,15 +45,13 @@ class DocumentManager extends Component {
     };
 
     handleOpenDocument = async (id) => {
-        if (!await DocumentApiService.documentExists(id)) {
-            this.setState(prevState => ({
-                documents: prevState.documents.filter(doc => doc.id !== id)
-            }));
+        const document = await DocumentApiService.getDocument(id);
 
+        if (document === null) {
+            this.setState(prevState => ({ documents: prevState.documents.filter(doc => doc.id !== id) }));
             return;
         }
 
-        const document = await DocumentApiService.getDocument(id);
         this.setState({ currentDocument: document, isEditing: true });
     };
 
@@ -70,8 +64,10 @@ class DocumentManager extends Component {
 
     handleCloseEditor = async () => {        
         const { currentDocument } = this.state;
+        const document = await DocumentApiService.getDocument(currentDocument.id);
 
-        if (await DocumentApiService.documentExists(currentDocument.id)) {
+        // only store it if it was not deleted in the meantime
+        if (document !== null) {
             await DocumentApiService.storeDocument(currentDocument);
         }
         

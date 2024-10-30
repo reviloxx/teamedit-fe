@@ -18,7 +18,6 @@ class DocumentApiService {
 
             const loadedYDoc = new Y.Doc()
             Y.applyUpdate(loadedYDoc, base64.base64ToBytes(data.ydoc))
-
             data.ydoc = loadedYDoc;
     
             return data && Object.keys(data).length ? data : null;
@@ -36,11 +35,6 @@ class DocumentApiService {
             console.error("Error fetching documents:", error);
         }                          
     };
-
-    static async documentExists(id) {
-        const document = await DocumentApiService.getDocument(id);
-        return document !== null;
-    }
 
     static async storeDocument(document) {
         try {
