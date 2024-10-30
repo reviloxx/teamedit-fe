@@ -16,33 +16,30 @@
 }
 
 /* Button Styles */
-.add-button,
-.button,
 .action-button {
     padding: 5px 10px;
-    color: #fff;
+    margin: 5px;
+    color: white;
+    background-color: #457b9d;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
 }
 
-.add-button {
+.action-button.add {
     background-color: #2a9d8f;
     margin: 5px;
 }
 
-.button {
-    background-color: #457b9d;
-}
-
-.action-button {
-    background-color: #457b9d;
-    margin: 5px;
+.action-button.cancel {
+    background-color: #f0a500;
 }
 
 .action-button.delete {
     background-color: #e63946;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .button-container {
@@ -67,6 +64,12 @@
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.list-item:hover .delete {
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
 
 .list-header-container {

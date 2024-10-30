@@ -66,7 +66,7 @@ class DocumentEditor extends Component {
                     />
                 )}
                 <div className="button-container">
-                    <button onClick={onClose} className="button" style={{ backgroundColor: '#f0a500' }}>
+                    <button onClick={onClose} className="action-button cancel">
                         Close
                     </button>
                 </div>

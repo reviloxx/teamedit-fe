@@ -33,11 +33,11 @@ class DocumentListHeader extends Component {
                             className="input"
                         />
                         <button onClick={this.handleAddDocument} className="action-button">Confirm</button>
-                        <button onClick={onCancelAddDocument} className="action-button delete">Cancel</button>
+                        <button onClick={onCancelAddDocument} className="action-button cancel">Cancel</button>
                     </div>
                 ) : (
                     <div>
-                        <button onClick={onShowAddDocument} className="add-button">New</button>
+                        <button onClick={onShowAddDocument} className="action-button add">New</button>
                         <button onClick={onRefresh} className="action-button">Reload</button>
                     </div>
                 )}
