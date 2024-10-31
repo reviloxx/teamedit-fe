@@ -6,6 +6,8 @@ import { EditorContent, Editor } from '@tiptap/react';
 import { Collaboration } from '@tiptap/extension-collaboration';
 import { TiptapCollabProvider } from '@hocuspocus/provider';
 import { format } from 'date-fns';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 class DocumentEditor extends Component {
     constructor(props) {
@@ -59,6 +61,9 @@ class DocumentEditor extends Component {
 
         return (
             <div className="editor-container">
+                <div style={{textAlign:"right"}}>
+                    <IconButton onClick={onClose} className="close-button"><CloseIcon/></IconButton>
+                </div>                
                 <h2>{document.title}</h2>
                 <h5>Created on {format(new Date(document.createdUtc), 'd.MM.yyyy, H:mm:ss')}</h5>
                 {editor && (
@@ -66,12 +71,7 @@ class DocumentEditor extends Component {
                         style={{ margin: 0, justifyContent: 'top-left', alignItems: 'top-left' }}
                         editor={editor}
                     />
-                )}
-                <div className="button-container">
-                    <button onClick={onClose} className="action-button cancel">
-                        Close
-                    </button>
-                </div>
+                )}                
             </div>
         );
     }

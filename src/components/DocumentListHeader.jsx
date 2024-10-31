@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import IconButton from '@mui/material/IconButton';
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import CachedIcon from '@mui/icons-material/Cached';
 
 class DocumentListHeader extends Component {
     constructor(props) {
@@ -23,6 +28,7 @@ class DocumentListHeader extends Component {
 
         return (
             <div className='list-header-container'>
+                <h2>Documents</h2>
                 {isAdding ? (
                     <div>
                         <input
@@ -32,13 +38,13 @@ class DocumentListHeader extends Component {
                             placeholder="Document name"
                             className="input"
                         />
-                        <button onClick={this.handleAddDocument} className="action-button">Confirm</button>
-                        <button onClick={onCancelAddDocument} className="action-button cancel">Cancel</button>
+                        <IconButton onClick={this.handleAddDocument} color='success'><CheckCircleIcon/></IconButton>
+                        <IconButton onClick={onCancelAddDocument} color='error'><CancelIcon/></IconButton>
                     </div>
                 ) : (
                     <div>
-                        <button onClick={onShowAddDocument} className="action-button add">New</button>
-                        <button onClick={onRefresh} className="action-button">Reload</button>
+                        <IconButton onClick={onShowAddDocument} color='success'><NoteAddIcon/></IconButton>
+                        <IconButton onClick={onRefresh} color='secondary'><CachedIcon/></IconButton>
                     </div>
                 )}
             </div>

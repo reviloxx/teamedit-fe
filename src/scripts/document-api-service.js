@@ -3,7 +3,7 @@ import * as base64 from "byte-base64";
 
 const endpoint = "/data-api/graphql"
 
-class DocumentDataApiService {  
+class DocumentApiService {  
 
     static async getById(id) {
         const gql = `
@@ -131,4 +131,4 @@ class DocumentDataApiService {
     }
 }
 
-export default DocumentDataApiService;
+export default DocumentApiService;

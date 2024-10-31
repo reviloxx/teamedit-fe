@@ -22,36 +22,15 @@
 }
 
 /* Button Styles */
-.action-button {
-  padding: 5px 10px;
-  margin: 5px;
-  color: white;
-  background-color: #457b9d;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.action-button.add {
-  background-color: #2a9d8f;
-  margin: 5px;
-}
-
-.action-button.cancel {
-  background-color: #f0a500;
-}
-
-.action-button.delete {
-  background-color: #e63946;
+.delete-button {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.button-container {
-  display: flex;
-  justify-content: right;
-  margin-top: 10px;
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 /* List and List Item Styles */
@@ -73,18 +52,21 @@
   cursor: pointer;
 }
 
-.list-item:hover .delete {
+.list-item:hover .delete-button {
   opacity: 1;
   transition: opacity 0.3s ease;
 }
 
 .list-header-container {
- text-align: right; 
- padding-right: 11px;
+  display: flex;
+  justify-content: space-between; /* Space between heading and buttons */
+  align-items: center;            /* Align items vertically in the center */
+  padding: 10px;                  /* Optional: add padding for spacing */
 }
 
 /* Editor Styles */
 .editor-container {
+  position: relative;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 8px;

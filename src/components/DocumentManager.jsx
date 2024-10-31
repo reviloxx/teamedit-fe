@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as Y from 'yjs';
-import DocumentDataApiService from '../scripts/document-data-api-service';
+import DocumentApiService from '../scripts/document-api-service';
 import DocumentEditor from './DocumentEditor';
 import DocumentList from './DocumentList';
 import DocumentListHeader from './DocumentListHeader';
@@ -21,7 +21,7 @@ class DocumentManager extends Component {
     }
 
     fetchData = async () => {
-        const data = await DocumentDataApiService.getAll();
+        const data = await DocumentApiService.getAll();
         if (data) {
             this.setState({ documents: data });
         }
@@ -34,7 +34,7 @@ class DocumentManager extends Component {
     handleAddDocument = async (newDocumentName) => {
         const { documents } = this.state;
         const newDocument = { id: crypto.randomUUID(), title: newDocumentName, createdUtc: new Date().toISOString(), ydoc: new Y.Doc() };
-        await DocumentDataApiService.create(newDocument);
+        await DocumentApiService.create(newDocument);
         
         this.setState({
             documents: [...documents, newDocument],
@@ -43,7 +43,7 @@ class DocumentManager extends Component {
     };
 
     handleOpenDocument = async (id) => {
-        const document = await DocumentDataApiService.getById(id);
+        const document = await DocumentApiService.getById(id);
 
         if (document === null) {
             this.setState(prevState => ({ documents: prevState.documents.filter(doc => doc.id !== id) }));
@@ -54,7 +54,7 @@ class DocumentManager extends Component {
     };
 
     handleDeleteDocument = async (document) => {
-        await DocumentDataApiService.delete(document);
+        await DocumentApiService.delete(document);
         this.setState(prevState => ({
             documents: prevState.documents.filter(doc => doc.id !== document.id)
         }));
@@ -62,11 +62,11 @@ class DocumentManager extends Component {
 
     handleCloseEditor = async () => {        
         const { currentDocument } = this.state;
-        const document = await DocumentDataApiService.getById(currentDocument.id);
+        const document = await DocumentApiService.getById(currentDocument.id);
 
         // only update if the document was not deleted in the meantime
         if (document !== null) {
-            await DocumentDataApiService.update(currentDocument);
+            await DocumentApiService.update(currentDocument);
         }
         
         await this.fetchData();

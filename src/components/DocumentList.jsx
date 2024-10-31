@@ -1,5 +1,7 @@
 import React from 'react';
 import { format } from 'date-fns';
+import IconButton from '@mui/material/IconButton';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const DocumentList = ({ documents, onOpenDocument, onDeleteDocument }) => {
     return (
@@ -9,15 +11,16 @@ const DocumentList = ({ documents, onOpenDocument, onDeleteDocument }) => {
                     <span>{format(new Date(document.createdUtc), 'd.MM.yyyy, H:mm:ss')}</span>
                     <span>{document.title}</span>
                     <div>
-                        <button
+                        <IconButton
+                        className="delete-button"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 onDeleteDocument(document);
                             }}
-                            className="action-button delete"
+                            color='error'
                         >
-                            Delete
-                        </button>
+                            <DeleteForeverIcon/>
+                        </IconButton>
                     </div>
                 </li>
             ))}
