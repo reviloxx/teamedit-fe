@@ -9,7 +9,15 @@ const DocumentList = ({ documents, onOpenDocument, onDeleteDocument }) => {
                     <span>{format(new Date(document.createdUtc), 'd.MM.yyyy, H:mm:ss')}</span>
                     <span>{document.title}</span>
                     <div>
-                        <button onClick={() => onDeleteDocument(document)} className="action-button delete">Delete</button>
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onDeleteDocument(document);
+                            }}
+                            className="action-button delete"
+                        >
+                            Delete
+                        </button>
                     </div>
                 </li>
             ))}
