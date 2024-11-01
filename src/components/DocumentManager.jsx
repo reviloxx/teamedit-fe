@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as Y from 'yjs';
-import DocumentApiService from '../scripts/document-api-service';
+import ApiClient from '../scripts/api-client';
 import DocumentEditor from './DocumentEditor';
 import DocumentList from './DocumentList';
 import DocumentListHeader from './DocumentListHeader';
@@ -23,7 +23,7 @@ class DocumentManager extends Component {
     }
 
     fetchData = async () => {
-        const data = await DocumentApiService.getAll();
+        const data = await ApiClient.getAll();
         if (data) {
             this.setState({ documents: data });
         }
@@ -36,7 +36,7 @@ class DocumentManager extends Component {
     handleAddDocument = async (newDocumentName) => {
         const { documents } = this.state;
         const newDocument = { id: crypto.randomUUID(), title: newDocumentName, createdUtc: new Date().toISOString(), ydoc: new Y.Doc() };
-        await DocumentApiService.create(newDocument);
+        await ApiClient.create(newDocument);
         
         this.setState({
             documents: [...documents, newDocument],
@@ -45,7 +45,7 @@ class DocumentManager extends Component {
     };
 
     handleOpenDocument = async (id) => {
-        const document = await DocumentApiService.getById(id);
+        const document = await ApiClient.getById(id);
 
         if (document === null) {
             this.setState(prevState => ({ documents: prevState.documents.filter(doc => doc.id !== id) }));
@@ -56,7 +56,7 @@ class DocumentManager extends Component {
     };
 
     handleDeleteDocument = async (document) => {
-        await DocumentApiService.delete(document);
+        await ApiClient.delete(document);
         this.setState(prevState => ({
             documents: prevState.documents.filter(doc => doc.id !== document.id)
         }));
@@ -64,13 +64,13 @@ class DocumentManager extends Component {
 
     handleCloseEditor = async () => {        
         const { currentDocument } = this.state;
-        const document = await DocumentApiService.getById(currentDocument.id);
+        const document = await ApiClient.getById(currentDocument.id);
 
         // only update if the document was not deleted in the meantime
         if (document !== null) {
-            await DocumentApiService.update(currentDocument);
+            await ApiClient.update(currentDocument);
         } else {
-            await DocumentApiService.create(currentDocument);
+            await ApiClient.create(currentDocument);
         }
         
         this.setState({ isEditing: false });

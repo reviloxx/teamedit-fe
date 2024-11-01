@@ -63,7 +63,7 @@ class DocumentEditor extends Component {
                     class: 'input'
                 }
             }
-        });
+        });      
 
         this.setState({ editor });
     }

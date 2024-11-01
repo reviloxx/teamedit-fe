@@ -1,11 +1,11 @@
 const generateRandomId = () => Math.random().toString(36).substring(2, 15);
 const generateRandomName = () => {
-    const adjectives = ['Brave', 'Curious', 'Energetic', 'Mighty', 'Wise'];
-    const nouns = ['Fox', 'Bear', 'Hawk', 'Lion', 'Wolf'];
+    const adjectives = ['Brave', 'Curious', 'Energetic', 'Mighty', 'Wise', 'Wild', 'Dirty'];
+    const nouns = ['Fox', 'Bear', 'Hawk', 'Lion', 'Wolf', 'Horse', 'Hoe'];
     return `${adjectives[Math.floor(Math.random() * adjectives.length)]} ${nouns[Math.floor(Math.random() * nouns.length)]}`;
 };
 const generateRandomColor = () => {
-    const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1'];
+    const colors = ['#ff6666', '#ff9966', '#ffcc66', '#99ff33', '#66ff99', '#66ffcc', '#00ffff', '#33ccff', '#3399ff', '#9999ff', '#cc66ff', '#ff66ff', '#ff6699'];
     return colors[Math.floor(Math.random() * colors.length)];
 };
 
