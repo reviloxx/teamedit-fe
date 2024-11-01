@@ -59,9 +59,9 @@
 
 .list-header-container {
   display: flex;
-  justify-content: space-between; /* Space between heading and buttons */
-  align-items: center;            /* Align items vertically in the center */
-  padding: 10px;                  /* Optional: add padding for spacing */
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
 
 /* Editor Styles */
@@ -88,3 +88,10 @@
   padding: 5px 10px;
   border: #457b9d;
 }
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
