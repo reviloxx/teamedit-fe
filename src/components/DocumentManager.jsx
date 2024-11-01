@@ -67,9 +67,10 @@ class DocumentManager extends Component {
         // only update if the document was not deleted in the meantime
         if (document !== null) {
             await DocumentApiService.update(currentDocument);
+        } else {
+            await DocumentApiService.create(currentDocument);
         }
         
-        await this.fetchData();
         this.setState({ isEditing: false });
     };
 

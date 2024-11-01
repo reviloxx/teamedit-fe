@@ -61,11 +61,11 @@ class DocumentEditor extends Component {
 
         return (
             <div className="editor-container">
-                <div style={{textAlign:"right"}}>
+                <div style={{justifyContent:"space-between", alignItems:"flex-start", display:"flex"}}>
+                    <h2>{document.title}</h2>
                     <IconButton onClick={onClose} className="close-button"><CloseIcon/></IconButton>
                 </div>                
-                <h2>{document.title}</h2>
-                <h5>Created on {format(new Date(document.createdUtc), 'd.MM.yyyy, H:mm:ss')}</h5>
+                <h5 style={{marginTop:"5px"}}>Created on {format(new Date(document.createdUtc), 'd.MM.yyyy, H:mm:ss')}</h5>
                 {editor && (
                     <EditorContent
                         style={{ margin: 0, justifyContent: 'top-left', alignItems: 'top-left' }}

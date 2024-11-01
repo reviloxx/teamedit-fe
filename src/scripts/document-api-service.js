@@ -27,10 +27,15 @@ class DocumentApiService {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(query)
-        });
+        });        
         
         const responseData = await response.json();
         const data = responseData.data.document_by_pk;
+
+        if (data === null) {
+            return null;
+        }
+
         const loadedYDoc = new Y.Doc()
         Y.applyUpdate(loadedYDoc, base64.base64ToBytes(data.ydoc))
         data.ydoc = loadedYDoc;
@@ -54,7 +59,7 @@ class DocumentApiService {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ query: query })
-        });
+        });        
         
         const data = await response.json();
         return data.data.documents.items;
