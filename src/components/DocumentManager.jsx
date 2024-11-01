@@ -4,11 +4,13 @@ import DocumentApiService from '../scripts/document-api-service';
 import DocumentEditor from './DocumentEditor';
 import DocumentList from './DocumentList';
 import DocumentListHeader from './DocumentListHeader';
+import UserGenerator from '../scripts/user-generator';
 
 class DocumentManager extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: UserGenerator.random(),
             documents: [],
             currentDocument: null,
             isEditing: false,
@@ -75,12 +77,13 @@ class DocumentManager extends Component {
     };
 
     render() {
-        const { documents, currentDocument, isEditing, isAdding } = this.state;
+        const { user, documents, currentDocument, isEditing, isAdding } = this.state;
 
         return (
             <div className="container">
                 {isEditing ? (
                     <DocumentEditor 
+                        currentUser={user}
                         document={currentDocument}
                         onClose={this.handleCloseEditor} 
                     />

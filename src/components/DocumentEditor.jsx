@@ -10,6 +10,7 @@ import ListItem from '@tiptap/extension-list-item';
 import Heading from '@tiptap/extension-heading';
 import { EditorContent, Editor } from '@tiptap/react';
 import { Collaboration } from '@tiptap/extension-collaboration';
+import { CollaborationCursor } from '@tiptap/extension-collaboration-cursor';
 import { TiptapCollabProvider } from '@hocuspocus/provider';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -23,12 +24,20 @@ class DocumentEditor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            editor: null,
+            editor: null
         };
     }
 
     componentDidMount() {
         const { document } = this.props;
+        const { currentUser } = this.props;
+
+        this.provider = new TiptapCollabProvider({
+            name: document.id,
+            appId: '7j9y6m10',
+            token: 'notoken',
+            document: document.ydoc,
+        });
 
         const editor = new Editor({
             extensions: [
@@ -43,6 +52,10 @@ class DocumentEditor extends Component {
                 ListItem,
                 Collaboration.configure({
                     document: document.ydoc
+                }),
+                CollaborationCursor.configure({
+                    provider: this.provider,
+                    user: currentUser
                 })
             ],
             editorProps: {
@@ -53,13 +66,6 @@ class DocumentEditor extends Component {
         });
 
         this.setState({ editor });
-       
-        this.provider = new TiptapCollabProvider({            
-            name: document.id,
-            appId: '7j9y6m10',
-            token: 'notoken',
-            document: document.ydoc
-        });
     }
 
     componentWillUnmount() {
