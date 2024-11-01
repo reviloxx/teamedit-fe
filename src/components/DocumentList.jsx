@@ -10,7 +10,7 @@ const DocumentList = ({ documents, onOpenDocument, onDeleteDocument }) => {
                 .sort((a, b) => new Date(b.createdUtc) - new Date(a.createdUtc))
                 .map(document => (
                     <li key={document.id} className="list-item" onClick={() => onOpenDocument(document.id)}>
-                        <span>{format(new Date(document.createdUtc), 'd.MM.yyyy, H:mm:ss')}</span>
+                        <span>{format(new Date(document.createdUtc), 'dd.MM.yyyy, H:mm:ss')}</span>
                         <span>{document.title}</span>
                         <div>
                             <IconButton
