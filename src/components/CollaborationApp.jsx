@@ -6,7 +6,7 @@ import DocumentList from './DocumentList';
 import DocumentListHeader from './DocumentListHeader';
 import UserGenerator from '../scripts/user-generator';
 
-class DocumentManager extends Component {
+class CollaborationApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -108,4 +108,4 @@ class DocumentManager extends Component {
     }
 }
 
-export default DocumentManager;
+export default CollaborationApp;

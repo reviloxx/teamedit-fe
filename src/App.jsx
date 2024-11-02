@@ -1,4 +1,4 @@
-import DocumentManager from './components/DocumentManager.jsx'
+import CollaborationApp from './components/CollaborationApp.jsx'
 import { AppBar, Toolbar, Typography } from '@mui/material';
 
 function App() {   
@@ -11,7 +11,7 @@ function App() {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <DocumentManager/>     
+            <CollaborationApp/>     
         </div>
     );
 }

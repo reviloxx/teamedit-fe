@@ -14,11 +14,7 @@ import { CollaborationCursor } from '@tiptap/extension-collaboration-cursor';
 import { TiptapCollabProvider } from '@hocuspocus/provider';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import FormatItalicIcon from '@mui/icons-material/FormatItalic';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import TitleIcon from '@mui/icons-material/Title';
+import DocumentEditorToolbar from './DocumentEditorToolbar';
 
 class DocumentEditor extends Component {
     constructor(props) {
@@ -29,8 +25,7 @@ class DocumentEditor extends Component {
     }
 
     componentDidMount() {
-        const { document } = this.props;
-        const { currentUser } = this.props;
+        const { document, currentUser } = this.props;
 
         this.provider = new TiptapCollabProvider({
             name: document.id,
@@ -77,38 +72,6 @@ class DocumentEditor extends Component {
         }
     }
 
-    renderToolbar() {
-        const { editor } = this.state;
-
-        if (!editor) return null;
-
-        return (
-            <div className="toolbar">
-                <IconButton onClick={() => editor.chain().focus().toggleBold().run()} aria-label="Bold">
-                    <FormatBoldIcon />
-                </IconButton>
-                <IconButton onClick={() => editor.chain().focus().toggleItalic().run()} aria-label="Italic">
-                    <FormatItalicIcon />
-                </IconButton>
-                <IconButton onClick={() => editor.chain().focus().toggleBulletList().run()} aria-label="Bullet List">
-                    <FormatListBulletedIcon />
-                </IconButton>
-                <IconButton onClick={() => editor.chain().focus().toggleOrderedList().run()} aria-label="Ordered List">
-                    <FormatListNumberedIcon />
-                </IconButton>
-                {[1, 2, 3].map(level => (
-                    <IconButton
-                        key={level}
-                        onClick={() => editor.chain().focus().toggleHeading({ level }).run()}
-                        aria-label={`Heading ${level}`}
-                    >
-                        <TitleIcon fontSize="small" />{level}
-                    </IconButton>
-                ))}
-            </div>
-        );
-    }
-
     render() {
         const { editor } = this.state;
         const { document, onClose } = this.props;
@@ -119,7 +82,7 @@ class DocumentEditor extends Component {
                     <h2>{document.title}</h2>
                     <IconButton onClick={onClose} className="close-button"><CloseIcon /></IconButton>
                 </div>            
-                {this.renderToolbar()}
+                <DocumentEditorToolbar editor={editor} />
                 {editor && (
                     <EditorContent
                         style={{ margin: 0, justifyContent: 'top-left', alignItems: 'top-left' }}

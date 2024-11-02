@@ -1,6 +1,6 @@
 #root {
   height: 100vh;
-  background-image: url('src/public/black_wood.jpg');   
+  background-image: url('public/black_wood.jpg');   
   overflow: auto; 
 }
 
@@ -105,19 +105,19 @@
 }
 
 .collaboration-cursor__label {
-  position: absolute; /* Relative to the caret */
-  top: -1.5em; /* Places label above the caret */
-  left: 50%; /* Centers label horizontally over caret */
+  position: absolute;
+  top: -1.5em;
+  left: 50%;
   transform: translateX(-50%);
   background-color: var(--cursor-color);
   color: white;
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: 12px; /* Fixed font size */
+  font-size: 12px;
   line-height: 1;
   white-space: nowrap;
   z-index: 11;
   pointer-events: none;
-  font-family: Arial, sans-serif; /* Fixed font to prevent scaling */
+  font-family: Arial, sans-serif;
   font-weight: bold;
 }
