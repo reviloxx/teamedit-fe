@@ -1,17 +1,15 @@
-import CollaborationApp from './components/CollaborationApp.jsx'
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import React from 'react';
+import CollaborationApp from './components/CollaborationApp.jsx';
+import AppHeader from './components/AppHeader';
+import UserGenerator from './scripts/user-generator.js';
 
-function App() {   
+function App() {
+    const user = UserGenerator.random();
+
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <AppBar position="fixed">
-                <Toolbar>
-                    <Typography variant="h5">
-                        Team Edit
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <CollaborationApp/>     
+            <AppHeader user={user} />
+            <CollaborationApp currentUser={user} />
         </div>
     );
 }

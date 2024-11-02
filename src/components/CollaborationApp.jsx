@@ -10,7 +10,6 @@ class CollaborationApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: UserGenerator.random(),
             documents: [],
             currentDocument: null,
             isEditing: false,
@@ -77,13 +76,14 @@ class CollaborationApp extends Component {
     };
 
     render() {
-        const { user, documents, currentDocument, isEditing, isAdding } = this.state;
+        const { documents, currentDocument, isEditing, isAdding } = this.state;
+        const { currentUser } = this.props;
 
         return (
             <div className="container">
                 {isEditing ? (
                     <DocumentEditor 
-                        currentUser={user}
+                        currentUser={currentUser}
                         document={currentDocument}
                         onClose={this.handleCloseEditor} 
                     />

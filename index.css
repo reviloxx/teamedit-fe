@@ -4,6 +4,20 @@
   overflow: auto; 
 }
 
+/* Toolbar styles */
+.userIcon {
+  width: 45px;
+  height: 45px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 /* Container Styles */
 .container {
   font-family: Arial, sans-serif;
