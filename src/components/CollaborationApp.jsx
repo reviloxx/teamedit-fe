@@ -4,7 +4,6 @@ import ApiClient from '../scripts/api-client';
 import DocumentEditor from './DocumentEditor';
 import DocumentList from './DocumentList';
 import DocumentListHeader from './DocumentListHeader';
-import UserGenerator from '../scripts/user-generator';
 
 class CollaborationApp extends Component {
     constructor(props) {

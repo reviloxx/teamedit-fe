@@ -1,29 +1,116 @@
-const adjectives = ['Brave', 'Curious', 'Energetic', 'Mighty', 'Wise', 'Wild', 'Dirty', 'Lost'];
-const nouns = ['Fox', 'Bear', 'Hawk', 'Lion', 'Wolf', 'Horse', 'Hoe', 'Weirdo'];
-const colors = ['#ff6666', '#ff9966', '#ffcc66', '#99ff33', '#66ff99', '#66ffcc', '#00ffff', '#33ccff', '#3399ff', '#9999ff', '#cc66ff', '#ff66ff', '#ff6699'];
+const adjectives = [
+    'Brave',
+    'Curious',
+    'Energetic',
+    'Mighty',
+    'Wise',
+    'Wild',
+    'Dirty',
+    'Lost',
+    'Filthy',
+    'Outrageous',
+    'Feisty',
+    'Raging',
+    'Unhinged',
+    'Sassy',
+    'Wicked',
+    'Rowdy',
+    'Grimy',
+    'Loony',
+    'Savage',
+    'Madcap',
+    'Greedy',
+    'Snarky',
+    'Lurking',
+    'Beastly',
+    'Sinister',
+    'Untamed',
+    'Ruthless',
+    'Vicious',
+    'Freaky',
+    'Deranged',
+    'Gnarly'
+];
 
-const generateRandomId = () => Math.random().toString(36).substring(2, 15);
-const generateRandomName = () => {
-    const adjectives = ['Brave', 'Curious', 'Energetic', 'Mighty', 'Wise', 'Wild', 'Dirty', 'Lost'];
-    const nouns = ['Fox', 'Bear', 'Hawk', 'Lion', 'Wolf', 'Horse', 'Hoe', 'Weirdo'];
-    return `${adjectives[Math.floor(Math.random() * adjectives.length)]} ${nouns[Math.floor(Math.random() * nouns.length)]}`;
-};
-const generateRandomColor = () => {
-    const colors = ['#ff6666', '#ff9966', '#ffcc66', '#99ff33', '#66ff99', '#66ffcc', '#00ffff', '#33ccff', '#3399ff', '#9999ff', '#cc66ff', '#ff66ff', '#ff6699'];
-    return colors[Math.floor(Math.random() * colors.length)];
-};
+const nouns = [
+    "Meathead",
+    "Trashpanda",
+    "Dumpsterfire",
+    "Shenanigator",
+    "Sassbucket",
+    "Bonehead",
+    "Mudmuncher",
+    "Gasbag",
+    "Lugnut",
+    "Mouthbreather",
+    "Buttcrunch",
+    "Swampdonkey",
+    "Slackjaw",
+    "Toecrust",
+    "Moldsniffer",
+    "Numbskull",
+    "Guttergoblin",
+    "Swampthing",
+    "Fartsniffer",
+    "Sleazeball",
+    "Greasebucket",
+    "Skidmark",
+    "Dingbat",
+    "Backwash",
+    "SewerDweller",
+    "Loafbrain",
+    "Toejam",
+    "Sniffles",
+    "Grimehound",
+    "Noodlebrain", 
+    "Weirdo", 
+    "Hoe"
+];
+
+const getRandomColor = (brightnessLimit = 70) => {
+    brightnessLimit = Math.min(100, Math.max(0, brightnessLimit));
+
+    const hue = Math.floor(Math.random() * 360);
+    const saturation = Math.floor(Math.random() * 51) + 50;
+    const lightness = Math.floor(Math.random() * (brightnessLimit + 1));
+
+    const rgb = hslToRgb(hue, saturation, lightness);
+
+    return `#${rgb.r.toString(16).padStart(2, '0')}${rgb.g.toString(16).padStart(2, '0')}${rgb.b.toString(16).padStart(2, '0')}`;
+}
+
+const hslToRgb = (h, s, l) => {
+    s /= 100;
+    l /= 100;
+
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    const m = l - c / 2;
+    let r = 0, g = 0, b = 0;
+
+    if (0 <= h && h < 60) { r = c; g = x; b = 0; }
+    else if (60 <= h && h < 120) { r = x; g = c; b = 0; }
+    else if (120 <= h && h < 180) { r = 0; g = c; b = x; }
+    else if (180 <= h && h < 240) { r = 0; g = x; b = c; }
+    else if (240 <= h && h < 300) { r = x; g = 0; b = c; }
+    else if (300 <= h && h < 360) { r = c; g = 0; b = x; }
+
+    r = Math.round((r + m) * 255);
+    g = Math.round((g + m) * 255);
+    b = Math.round((b + m) * 255);
+
+    return { r, g, b };
+}
 
 class UserGenerator {
     static random() {
         const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
         const noun = nouns[Math.floor(Math.random() * nouns.length)];
-        const color = colors[Math.floor(Math.random() * colors.length)];
-
         return {
-            id: generateRandomId(),
+            id: crypto.randomUUID(),
             name: `${adjective} ${noun}`,
             initials: `${adjective[0]} ${noun[0]}`,
-            color: color
+            color: getRandomColor()
         };
     }
 }
