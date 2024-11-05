@@ -37,6 +37,7 @@ class DocumentListHeader extends Component {
                             onChange={this.handleInputChange}
                             placeholder="Document name"
                             className="input"
+                            maxLength={50}
                         />
                         <IconButton onClick={this.handleAddDocument} color='success'><CheckCircleIcon/></IconButton>
                         <IconButton onClick={onCancelAddDocument} color='error'><CancelIcon/></IconButton>
