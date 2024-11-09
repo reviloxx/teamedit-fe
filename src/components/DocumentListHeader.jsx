@@ -4,6 +4,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import CachedIcon from '@mui/icons-material/Cached';
+import { Tooltip } from '@mui/material';
 
 class DocumentListHeader extends Component {
     constructor(props) {
@@ -39,13 +40,21 @@ class DocumentListHeader extends Component {
                             className="input"
                             maxLength={50}
                         />
-                        <IconButton onClick={this.handleAddDocument} color='success'><CheckCircleIcon/></IconButton>
-                        <IconButton onClick={onCancelAddDocument} color='error'><CancelIcon/></IconButton>
+                        <Tooltip title='Confirm'>
+                            <IconButton onClick={this.handleAddDocument} color='success'><CheckCircleIcon/></IconButton>
+                        </Tooltip>
+                        <Tooltip title='Cancel'>
+                            <IconButton onClick={onCancelAddDocument} color='error'><CancelIcon/></IconButton>
+                        </Tooltip>
                     </div>
                 ) : (
                     <div>
-                        <IconButton onClick={onShowAddDocument} color='success'><NoteAddIcon/></IconButton>
-                        <IconButton onClick={onRefresh} color='secondary'><CachedIcon/></IconButton>
+                        <Tooltip title='Add document'>
+                            <IconButton onClick={onShowAddDocument} color='success'><NoteAddIcon/></IconButton>
+                        </Tooltip>
+                        <Tooltip title='Refresh list'>
+                            <IconButton onClick={onRefresh} color='secondary'><CachedIcon/></IconButton>
+                        </Tooltip>
                     </div>
                 )}
             </div>
