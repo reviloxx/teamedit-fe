@@ -49,10 +49,10 @@ class DocumentListHeader extends Component {
                     </div>
                 ) : (
                     <div>
-                        <Tooltip title='Add document'>
+                        <Tooltip title='Add Document'>
                             <IconButton onClick={onShowAddDocument} color='success'><NoteAddIcon/></IconButton>
                         </Tooltip>
-                        <Tooltip title='Refresh list'>
+                        <Tooltip title='Refresh List'>
                             <IconButton onClick={onRefresh} color='secondary'><CachedIcon/></IconButton>
                         </Tooltip>
                     </div>

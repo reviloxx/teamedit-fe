@@ -3,15 +3,19 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Popover from '@mui/material/Popover';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
-import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
+import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
+import StrikethroughSIcon from '@mui/icons-material/StrikethroughS';
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+import CodeIcon from '@mui/icons-material/Code';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
+import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
 import TitleIcon from '@mui/icons-material/Title';
 
 const colors = ['#FF5733', '#33FF57', '#3357FF', '#FFD700', '#FF33A8', '#A833FF', '#333333'];
@@ -52,6 +56,26 @@ const DocumentEditorToolbar = ({ editor }) => {
             <Tooltip title="Italic">
                 <IconButton onClick={() => editor.chain().focus().toggleItalic().run()}>
                     <FormatItalicIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Underline">
+                <IconButton onClick={() => editor.chain().focus().toggleUnderline().run()}>
+                    <FormatUnderlinedIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Strikethrough">
+                <IconButton onClick={() => editor.chain().focus().toggleStrike().run()}>
+                    <StrikethroughSIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Blockquote">
+                <IconButton onClick={() => editor.chain().focus().toggleBlockquote().run()}>
+                    <FormatQuoteIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Code Block">
+                <IconButton onClick={() => editor.chain().focus().toggleCodeBlock().run()}>
+                    <CodeIcon />
                 </IconButton>
             </Tooltip>
 
@@ -115,7 +139,7 @@ const DocumentEditorToolbar = ({ editor }) => {
                         <IconButton
                             key={color}
                             onClick={() => applyTextColor(color)}
-                            style={{ backgroundColor: color, width: 24, height: 24, margin: '1px' }}
+                            style={{ backgroundColor: color, width: 24, height: 24, margin: '1px',border: '1px solid black' }}
                         />
                     ))}
                 </div>
@@ -133,19 +157,19 @@ const DocumentEditorToolbar = ({ editor }) => {
                 onClose={closeBackgroundColor}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
             >
-                <div style={{ display: 'flex', padding: '8px' }}>
+                <div style={{ display: 'flex', padding: '8px' }}>                    
+                    {colors.map((color) => (
+                        <IconButton
+                            key={color}
+                            onClick={() => applyBackgroundColor(color)}
+                            style={{ backgroundColor: color, width: 24, height: 24, margin: '1px', border: '1px solid black' }}
+                        />
+                    ))}
                     <IconButton
                         onClick={() => applyBackgroundColor("reset")}
                         style={{ width: 24, height: 24, margin: '1px', border: '1px solid black' }}
                     >
                     </IconButton>
-                    {colors.map((color) => (
-                        <IconButton
-                            key={color}
-                            onClick={() => applyBackgroundColor(color)}
-                            style={{ backgroundColor: color, width: 24, height: 24, margin: '1px' }}
-                        />
-                    ))}
                 </div>
             </Popover>
         </div>

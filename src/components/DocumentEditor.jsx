@@ -4,6 +4,10 @@ import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
 import Bold from '@tiptap/extension-bold';
 import Italic from '@tiptap/extension-italic';
+import Underline from '@tiptap/extension-underline';
+import Strike from '@tiptap/extension-strike';
+import CodeBlock from '@tiptap/extension-code-block';
+import Blockquote from '@tiptap/extension-blockquote';
 import Highlight from '@tiptap/extension-highlight';
 import TextStyle from '@tiptap/extension-text-style';
 import Color from '@tiptap/extension-color';
@@ -46,6 +50,10 @@ class DocumentEditor extends Component {
                 Text,
                 Bold,
                 Italic,
+                Underline,
+                Strike,
+                CodeBlock,
+                Blockquote,
                 Highlight.configure({ multicolor: true }),
                 TextStyle,
                 Color,
@@ -91,7 +99,7 @@ class DocumentEditor extends Component {
             <div className="editor-container">
                 <div style={{ justifyContent: "space-between", alignItems: "flex-start", display: "flex" }}>
                     <h2>{document.title}</h2>
-                    <Tooltip title='Save and close'>
+                    <Tooltip title='Save And Close'>
                         <IconButton onClick={onClose} className="close-button"><CloseIcon /></IconButton>
                     </Tooltip>
                 </div>            
