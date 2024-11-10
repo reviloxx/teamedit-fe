@@ -79,40 +79,6 @@ const DocumentEditorToolbar = ({ editor }) => {
                 </IconButton>
             </Tooltip>
 
-            {/* Alignment */}
-            <Tooltip title="Align Left">
-                <IconButton onClick={() => editor.chain().focus().setTextAlign('left').run()}>
-                    <FormatAlignLeftIcon />
-                </IconButton>
-            </Tooltip>
-            <Tooltip title="Align Center">
-                <IconButton onClick={() => editor.chain().focus().setTextAlign('center').run()}>
-                    <FormatAlignCenterIcon />
-                </IconButton>
-            </Tooltip>
-            <Tooltip title="Align Right">
-                <IconButton onClick={() => editor.chain().focus().setTextAlign('right').run()}>
-                    <FormatAlignRightIcon />
-                </IconButton>
-            </Tooltip>
-            <Tooltip title="Justify">
-                <IconButton onClick={() => editor.chain().focus().setTextAlign('justify').run()}>
-                    <FormatAlignJustifyIcon />
-                </IconButton>
-            </Tooltip>
-
-            {/* Lists */}
-            <Tooltip title="Bullet List">
-                <IconButton onClick={() => editor.chain().focus().toggleBulletList().run()}>
-                    <FormatListBulletedIcon />
-                </IconButton>
-            </Tooltip>
-            <Tooltip title="Numbered List">
-                <IconButton onClick={() => editor.chain().focus().toggleOrderedList().run()}>
-                    <FormatListNumberedIcon />
-                </IconButton>
-            </Tooltip>
-
             {/* Headings */}
             {[1, 2, 3].map(level => (
                 <Tooltip key={level} title={`Heading ${level}`}>
@@ -122,8 +88,8 @@ const DocumentEditorToolbar = ({ editor }) => {
                 </Tooltip>
             ))}
 
-             {/* Text Color Picker */}
-             <Tooltip title="Text Color">
+            {/* Text Color Picker */}
+            <Tooltip title="Text Color">
                 <IconButton onClick={handleTextColorClick}>
                     <FormatColorTextIcon />
                 </IconButton>
@@ -172,6 +138,40 @@ const DocumentEditorToolbar = ({ editor }) => {
                     </IconButton>
                 </div>
             </Popover>
+
+            {/* Alignment */}
+            <Tooltip title="Align Left">
+                <IconButton onClick={() => editor.chain().focus().setTextAlign('left').run()}>
+                    <FormatAlignLeftIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Align Center">
+                <IconButton onClick={() => editor.chain().focus().setTextAlign('center').run()}>
+                    <FormatAlignCenterIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Align Right">
+                <IconButton onClick={() => editor.chain().focus().setTextAlign('right').run()}>
+                    <FormatAlignRightIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Justify">
+                <IconButton onClick={() => editor.chain().focus().setTextAlign('justify').run()}>
+                    <FormatAlignJustifyIcon />
+                </IconButton>
+            </Tooltip>
+
+            {/* Lists */}
+            <Tooltip title="Bullet List">
+                <IconButton onClick={() => editor.chain().focus().toggleBulletList().run()}>
+                    <FormatListBulletedIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Numbered List">
+                <IconButton onClick={() => editor.chain().focus().toggleOrderedList().run()}>
+                    <FormatListNumberedIcon />
+                </IconButton>
+            </Tooltip>             
         </div>
     );
 };

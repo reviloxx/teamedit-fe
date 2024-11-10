@@ -105,8 +105,9 @@
 
 .toolbar {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   margin-bottom: 10px;
+  justify-content: center;
 }
 
 /* Collaboration Cursor Styles */
