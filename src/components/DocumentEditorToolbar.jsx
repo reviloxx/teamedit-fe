@@ -16,6 +16,8 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
 import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
+import UndoIcon from '@mui/icons-material/Undo';
+import RedoIcon from '@mui/icons-material/Redo';
 import TitleIcon from '@mui/icons-material/Title';
 
 const colors = ['#FF5733', '#33FF57', '#3357FF', '#FFD700', '#FF33A8', '#A833FF', '#333333'];
@@ -68,16 +70,6 @@ const DocumentEditorToolbar = ({ editor }) => {
                     <StrikethroughSIcon />
                 </IconButton>
             </Tooltip>
-            <Tooltip title="Blockquote">
-                <IconButton onClick={() => editor.chain().focus().toggleBlockquote().run()}>
-                    <FormatQuoteIcon />
-                </IconButton>
-            </Tooltip>
-            <Tooltip title="Code Block">
-                <IconButton onClick={() => editor.chain().focus().toggleCodeBlock().run()}>
-                    <CodeIcon />
-                </IconButton>
-            </Tooltip>
 
             {/* Headings */}
             {[1, 2, 3].map(level => (
@@ -87,6 +79,40 @@ const DocumentEditorToolbar = ({ editor }) => {
                     </IconButton>
                 </Tooltip>
             ))}
+
+            {/* Lists */}
+            <Tooltip title="Bullet List">
+                <IconButton onClick={() => editor.chain().focus().toggleBulletList().run()}>
+                    <FormatListBulletedIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Numbered List">
+                <IconButton onClick={() => editor.chain().focus().toggleOrderedList().run()}>
+                    <FormatListNumberedIcon />
+                </IconButton>
+            </Tooltip>            
+
+            {/* Alignment */}
+            <Tooltip title="Align Left">
+                <IconButton onClick={() => editor.chain().focus().setTextAlign('left').run()}>
+                    <FormatAlignLeftIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Align Center">
+                <IconButton onClick={() => editor.chain().focus().setTextAlign('center').run()}>
+                    <FormatAlignCenterIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Align Right">
+                <IconButton onClick={() => editor.chain().focus().setTextAlign('right').run()}>
+                    <FormatAlignRightIcon />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Justify">
+                <IconButton onClick={() => editor.chain().focus().setTextAlign('justify').run()}>
+                    <FormatAlignJustifyIcon />
+                </IconButton>
+            </Tooltip>
 
             {/* Text Color Picker */}
             <Tooltip title="Text Color">
@@ -138,40 +164,29 @@ const DocumentEditorToolbar = ({ editor }) => {
                     </IconButton>
                 </div>
             </Popover>
-
-            {/* Alignment */}
-            <Tooltip title="Align Left">
-                <IconButton onClick={() => editor.chain().focus().setTextAlign('left').run()}>
-                    <FormatAlignLeftIcon />
+            
+            <Tooltip title="Blockquote">
+                <IconButton onClick={() => editor.chain().focus().toggleBlockquote().run()}>
+                    <FormatQuoteIcon />
                 </IconButton>
             </Tooltip>
-            <Tooltip title="Align Center">
-                <IconButton onClick={() => editor.chain().focus().setTextAlign('center').run()}>
-                    <FormatAlignCenterIcon />
-                </IconButton>
-            </Tooltip>
-            <Tooltip title="Align Right">
-                <IconButton onClick={() => editor.chain().focus().setTextAlign('right').run()}>
-                    <FormatAlignRightIcon />
-                </IconButton>
-            </Tooltip>
-            <Tooltip title="Justify">
-                <IconButton onClick={() => editor.chain().focus().setTextAlign('justify').run()}>
-                    <FormatAlignJustifyIcon />
+            <Tooltip title="Code Block">
+                <IconButton onClick={() => editor.chain().focus().toggleCodeBlock().run()}>
+                    <CodeIcon />
                 </IconButton>
             </Tooltip>
 
-            {/* Lists */}
-            <Tooltip title="Bullet List">
-                <IconButton onClick={() => editor.chain().focus().toggleBulletList().run()}>
-                    <FormatListBulletedIcon />
+            {/* Undo and Redo */}
+            <Tooltip title="Undo">
+                <IconButton onClick={() => editor.chain().focus().undo().run()}>
+                    <UndoIcon />
                 </IconButton>
             </Tooltip>
-            <Tooltip title="Numbered List">
-                <IconButton onClick={() => editor.chain().focus().toggleOrderedList().run()}>
-                    <FormatListNumberedIcon />
+            <Tooltip title="Redo">
+                <IconButton onClick={() => editor.chain().focus().redo().run()}>
+                    <RedoIcon />
                 </IconButton>
-            </Tooltip>             
+            </Tooltip>
         </div>
     );
 };

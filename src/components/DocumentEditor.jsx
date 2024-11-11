@@ -103,7 +103,7 @@ class DocumentEditor extends Component {
                         <IconButton onClick={onClose} className="close-button"><CloseIcon /></IconButton>
                     </Tooltip>
                 </div>            
-                <div style={{ position: 'sticky', top: '60px', margin: '1px', zIndex: 100, backgroundColor: '#f9f9f9' }}>
+                <div style={{ position: 'sticky', top: '64px', margin: '1px', zIndex: 100, backgroundColor: '#f9f9f9' }}>
                     <DocumentEditorToolbar editor={editor} />
                 </div>
                 <EditorContent style={{ margin: 0, justifyContent: 'top-left', alignItems: 'top-left' }} editor={editor} />
