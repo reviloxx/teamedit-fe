@@ -105,7 +105,7 @@
 
 .toolbar {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   margin-bottom: 10px;
   justify-content: center;
 }
