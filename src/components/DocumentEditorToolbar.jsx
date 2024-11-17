@@ -19,6 +19,7 @@ import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
 import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
 import TitleIcon from '@mui/icons-material/Title';
+import ImageIcon from '@mui/icons-material/Image';
 
 const colors = ['#FF5733', '#33FF57', '#3357FF', '#FFD700', '#FF33A8', '#A833FF', '#333333'];
 
@@ -45,6 +46,13 @@ const DocumentEditorToolbar = ({ editor }) => {
             editor.chain().focus().setHighlight({ color }).run();
         }
         closeBackgroundColor();
+    };
+
+    const insertImage = () => {
+        const url = prompt('Enter image URL:');
+        if (url) {
+            editor.chain().focus().setImage({ src: url }).run();
+        }
     };
 
     return (
@@ -173,6 +181,12 @@ const DocumentEditorToolbar = ({ editor }) => {
             <Tooltip title="Code Block">
                 <IconButton onClick={() => editor.chain().focus().toggleCodeBlock().run()}>
                     <CodeIcon />
+                </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Insert Image">
+                <IconButton onClick={insertImage}>
+                    <ImageIcon />
                 </IconButton>
             </Tooltip>
 

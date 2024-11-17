@@ -16,6 +16,7 @@ import OrderedList from '@tiptap/extension-ordered-list';
 import ListItem from '@tiptap/extension-list-item';
 import Heading from '@tiptap/extension-heading';
 import TextAlign from '@tiptap/extension-text-align';
+import Image from '@tiptap/extension-image';
 import { EditorContent, Editor } from '@tiptap/react';
 import { Collaboration } from '@tiptap/extension-collaboration';
 import { CollaborationCursor } from '@tiptap/extension-collaboration-cursor';
@@ -61,6 +62,10 @@ class DocumentEditor extends Component {
                 BulletList,
                 OrderedList,
                 ListItem,
+                Image.configure({
+                    inline: false,
+                    allowBase64: true
+                }),
                 TextAlign.configure({
                     types: ['heading', 'paragraph'],
                 }),

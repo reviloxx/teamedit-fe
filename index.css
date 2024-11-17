@@ -110,6 +110,13 @@
   justify-content: center;
 }
 
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  margin: 8px 0;
+}
+
 /* Collaboration Cursor Styles */
 .collaboration-cursor__caret {
   height: 1.2em;
