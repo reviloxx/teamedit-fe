@@ -62,15 +62,7 @@ class CollaborationApp extends Component {
 
     handleCloseEditor = async () => {        
         const { currentDocument } = this.state;
-        const document = await ApiClient.getById(currentDocument.id);
-
-        // only update if the document was not deleted in the meantime
-        if (document !== null) {
-            await ApiClient.update(currentDocument);
-        } else {
-            await ApiClient.create(currentDocument);
-        }
-        
+        await ApiClient.update(currentDocument);        
         this.setState({ isEditing: false });
     };
 
